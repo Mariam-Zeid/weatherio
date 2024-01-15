@@ -1,0 +1,405 @@
+/* ? ========================= HEADER ========================= */
+.header {
+  position: relative;
+  z-index: 999;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*-----------------------------------*\
+  Logo
+\*-----------------------------------*/
+.weatherio-logo {
+  width: 15rem;
+}
+
+/*-----------------------------------*\
+  Search
+\*-----------------------------------*/
+
+/* for Mobile search */
+.search-view {
+  position: fixed;
+  z-index: 4;
+
+  /* Full Height */
+  top: 0;
+  bottom: 0;
+
+  /* Full width */
+  right: 0;
+  left: 0;
+
+  color: var(--on-surface);
+  background-color: var(--surface);
+
+  /* hide it and show it when you click on the search icon */
+  /* Implement a responsive interaction for the search icon component that involves the dynamic display of a visual indicator. By default, the visual indicator is concealed. However, upon user interaction, specifically a click event on the search icon, the indicator becomes visible. This behavior is achieved through the toggling of a state class, such as 'active,' on the search icon component. The visual transition between the hidden and visible states is facilitated by utilizing CSS transitions, providing a seamless and engaging user experience.
+ */
+
+  /* Toggle visibility by clicking the search icon. */
+  clip-path: circle(4% at 100% 0%);
+  opacity: 0;
+  visibility: hidden;
+  transition: clip-path 500ms ease;
+}
+/* show search view */
+.search-view.active {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(130% at 73% 5%);
+}
+
+.search-wrapper {
+  position: relative;
+  border-block-end: 1px solid var(--outline);
+}
+/* Spinner For loading */
+.search-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  transform: translateY(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 3px solid var(--on-surface);
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  display: none;
+  animation: loading 700ms linear infinite;
+}
+/* showing the spinner */
+.search-wrapper:has(.searching)::before {
+  display: block;
+}
+.search-field {
+  height: 8rem;
+  line-height: 5;
+  padding-inline: 5.6rem 1.6rem;
+  outline: none;
+}
+.search-field::placeholder {
+  color: var(--on-surface-variant-2);
+}
+.search-field::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* put the arrow beside the search input */
+.search-wrapper .leading-icon {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translate(-50%, -50%);
+}
+/* hiding the search icon */
+.search-wrapper > .m-icon {
+  display: none;
+}
+.search-wrapper .icon-btn {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Result */
+.search-view .view-list {
+  padding-block: 0.8rem 1.6rem;
+}
+.search-view .view-item {
+  position: relative;
+  height: 5.6rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.6rem;
+  padding-inline: 1.6rem 2.4rem;
+}
+.search-view .view-item :is(.m-icon, .item-subtitle) {
+  color: var(--on-surface-variant);
+}
+.search-view .view-item .item-link {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
+}
+
+/*-----------------------------------*\
+  Mobile Browser
+\*-----------------------------------*/
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.header .btn-primary .span {
+  display: none;
+}
+.header .btn-primary {
+  padding-inline: 1.2rem;
+}
+
+/* ? ========================= MAIN ========================= */
+article.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  height: 100%;
+  overflow-y: overlay;
+}
+article.container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+article.container :is(:hover, :focus-visible)::-webkit-scrollbar-thumb {
+  background-color: var(--white-alpha-8);
+}
+article.container::-webkit-scrollbar-button {
+  height: 1rem;
+}
+article.container::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background-image: var(--gradient-1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ? ====== left container ====== */
+
+/*-----------------------------------*\
+  Current Weather
+\*-----------------------------------*/
+
+.current-weather-card .wrapper {
+  margin-block: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+.current-weather-card .weather-icon {
+  margin-inline: auto;
+}
+.current-weather-card > .body-3 {
+  text-transform: capitalize;
+}
+.current-weather-card .meta-list {
+  margin-block-start: 1.6rem;
+  padding-block-start: 1.6rem;
+  border-block-start: 1px solid var(--outline);
+}
+.current-weather-card .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.current-weather-card .meta-item:not(:last-child) {
+  margin-block-end: 1.2rem;
+}
+.current-weather-card .meta-text {
+  color: var(--on-surface-variant);
+}
+
+
+/*-----------------------------------*\
+  5 Days Forecast
+\*-----------------------------------*/
+
+.forecast-card .title-2 {
+  margin-block-end: 0;
+}
+.forecast-card :is(.card-item, .icon-wrapper) {
+  display: flex;
+  align-items: center;
+}
+.forecast-card .card-item:not(:last-child) {
+  margin-block-end: 1.2rem;
+}
+.forecast-card .icon-wrapper {
+  gap: 0.8rem;
+}
+.forecast-card .label-1 {
+  color: var(--on-surface-variant);
+  font-weight: var(--weight-semiBold);
+}
+.forecast-card .card-item > .label-1 {
+  width: 100%;
+  text-align: right;
+}
+
+/* ? ====== right container ====== */
+
+/*-----------------------------------*\
+  Today's Highlights
+\*-----------------------------------*/
+
+.highlights .m-icon {
+  font-size: 3.2rem;
+}
+.highlight-list {
+  display: grid;
+  gap: 2rem;
+}
+.highlight-list .title-3 {
+  color: var(--on-surface-variant);
+  margin-block-end: 2rem;
+}
+.highlights .card-sm {
+  background-color: var(--black-alpha-10);
+  position: relative;
+}
+.highlight-card :is(.wrapper, .card-list, .card-item) {
+  display: flex;
+  align-items: center;
+}
+.highlight-card .wrapper {
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+.highlight-card .card-list {
+  flex-wrap: wrap;
+  flex-grow: 1;
+  row-gap: 0.8rem;
+}
+.highlight-card .card-item {
+  width: 50%;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+.highlight-card .label-1 {
+  color: var(--on-surface-variant);
+}
+.badge {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  padding: 0.2rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-weight: var(--weight-semiBold);
+  cursor: help;
+}
+.badge.aqi-1 {
+  background-color: var(--bg-aqi-1);
+  color: var(--on-bg-aqi-1);
+}
+.badge.aqi-2 {
+  background-color: var(--bg-aqi-2);
+  color: var(--on-bg-aqi-2);
+}
+.badge.aqi-3 {
+  background-color: var(--bg-aqi-3);
+  color: var(--on-bg-aqi-3);
+}
+.badge.aqi-4 {
+  background-color: var(--bg-aqi-4);
+  color: var(--on-bg-aqi-4);
+}
+.badge.aqi-5 {
+  background-color: var(--bg-aqi-5);
+  color: var(--on-bg-aqi-5);
+}
+.highlight-card.two .card-item {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.6rem;
+}
+.highlight-card.two .label-1 {
+  margin-block-end: 4px;
+}
+
+/*-----------------------------------*\
+  Hourly Forecast
+\*-----------------------------------*/
+.slider-container {
+  overflow-x: auto;
+  margin-inline: -1.6rem;
+}
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+.slider-list {
+  display: flex;
+  gap: 1.2rem;
+}
+.slider-list:first-child {
+  margin-block-end: 1.6rem;
+}
+.slider-list::before,
+.slider-list::after {
+  content: "";
+  min-width: 4px;
+}
+.slider-item {
+  min-width: 10.1rem;
+  flex: 1 1 100%;
+}
+.slider-card {
+  text-align: center;
+}
+.slider-item .weather-icon {
+  margin-inline: auto;
+  margin-block: 1.2rem;
+}
+
+/* ? ========================= FOOTER ========================= */
+.footer {
+  color: var(--on-surface-variant);
+  margin-block: 2.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* ? ========================= LOADING ========================= */
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  /* display: grid; */
+  display: none;
+  place-items: center;
+  z-index: 1;
+}
+
+.loading::before {
+  content: '';
+  width: 4.8rem;
+  height: 4.8rem;
+  border: 4px solid var(--on-background);
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  
+  animation: loading 700ms linear infinite;
+}
+
+  /* ? ========================= LOADING ========================= */
+  .error-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  background-color: var(--background);
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 8;
+}
+.error-content .btn-primary {
+  margin-block-start: 2rem;
+}

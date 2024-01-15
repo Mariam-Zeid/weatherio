@@ -1,0 +1,39 @@
+#---------- Icons ----------#
+<span class="m-icon">search</span>
+<span class="m-icon">arrow_back</span>
+<span class="m-icon">location_on</span>
+<span class="m-icon">my_location</span>
+<span class="m-icon">calendar_today</span>
+<span class="m-icon">air</span>
+<span class="m-icon">clear_day</span>
+<span class="m-icon">clear_night</span>
+<span class="m-icon">humidity_percentage</span>
+<span class="m-icon">airwave</span>
+<span class="m-icon">visibility</span>
+<span class="m-icon">thermostat</span>
+
+
+#---------- AIR QUALITY INDEX ----------#
+1
+Good
+Air quality is considered satisfactory, and air pollution poses little or no risk
+
+2
+Fair
+Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.
+
+3
+Moderate
+Member's of sensitive groups may experience health effects. The general public is not likely to be affected.
+
+4
+Poor
+Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects
+
+5
+Very Poor
+Health warnings of emergency conditions. The entire population is more likely to be affected.
+
+
+defaultLocation = #/weather?lat=51.5073219&lon=0.1276474
+
